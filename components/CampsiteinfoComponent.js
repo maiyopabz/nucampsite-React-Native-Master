@@ -4,6 +4,7 @@ import { Card, Icon } from 'react-native-elements';
 import { CAMPSITES } from '../shared/campsites';
 import { COMMENTS } from '../shared/comments';
 
+
 function RenderCampsite(props) {
 
 
@@ -22,7 +23,7 @@ function RenderCampsite(props) {
         <Icon
           name={props.favorite ? 'heart' : 'heart-o'}
           type='font-awesome'
-          color='#ff0000'
+          color='#f50'
           raised
           reverse
           onPress={() => props.favorite ? 
@@ -36,30 +37,27 @@ function RenderCampsite(props) {
 
 
 function RenderComments({comments}) {
-  
+
   const renderCommentItem = ({item}) => {
-    return (
-      
-      <View style={{margin: 10}}>
-        <Text style={{fontSize: 14}}>{item.text}</Text>
-        <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
-        <Text style={{fontSize: 12}}>{`-- ${item.author}, ${item.date}`}</Text>
-      </View>
-    )
+      return (
+          <View style={{margin: 10}}>
+              <Text style={{fontSize: 14}}>{item.text}</Text>
+              <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
+              <Text style={{fontSize: 12}}>{`-- ${item.author}, ${item.date}`}</Text>
+          </View>
+      );
   };
 
- 
-  return (  
-    <Card title='Comments'>
-      <FlatList        
-        data={comments}
-        renderItem={renderCommentItem}
-        keyExtractor={DataTransferItem => DataTransferItem.id.toString()}
-      />
-    </Card>
-  )
+  return (
+      <Card title='Comments'>
+          <FlatList
+              data={comments}
+              renderItem={renderCommentItem}
+              keyExtractor={item => item.id.toString()}
+          />
+      </Card>
+  );
 }
-
 class CampsiteInfo extends Component {
 
   constructor(props) {
